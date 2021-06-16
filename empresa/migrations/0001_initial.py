@@ -65,9 +65,9 @@ class Migration(migrations.Migration):
                 ('available', models.BooleanField(default=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('autor', models.ManyToManyField(to='estoque.Autor')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='categorias', to='estoque.category')),
-                ('editora', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='editoras', to='estoque.editora')),
+                ('autor', models.ManyToManyField(to='empresa.Autor')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='categorias', to='empresa.category')),
+                ('editora', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='editoras', to='empresa.editora')),
             ],
             options={
                 'ordering': ('name',),

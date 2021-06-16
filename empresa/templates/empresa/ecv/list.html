@@ -1,0 +1,43 @@
+{% extends "empresa/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Empresas - ECV´s{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="sidebar">
+    <h3>Buscar por Cidades</h3>
+    <ul>
+      <li {% if not actegory %}class="selected"{% endif %}>
+        <a href="{% url "empresa:ecv_list" %}">Todas</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="main" class="product-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Todas{% endif %}</h1>
+    {% for ecv in ecvs %}
+      <div class="item">
+        <a href="{{ ecv.get_absolute_url }}">
+
+        </a>
+        <!--  <a href="{{ ecv.get_absolute_url }}">{{ ecv.name }}</a> -->
+        Empresa : {{ ecv.name }}
+        Endereço : {{ ecv.endereco }}
+        E-mail : {{ ecv.email }}
+        Link :{{ecv.link}}
+        Telefone :{{ecv.telefone}}
+
+
+
+        <br>
+
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

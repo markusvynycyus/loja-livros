@@ -1,27 +1,27 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Livro
+from .models import Category, Ecv
 
 
-def livro_list(request, category_slug=None):
+def ecv_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    livros = Livro.objects.filter(available=True)
+    ecvs = Ecv.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        livros = livros.filter(category=category)
+        ecvs = ecvs.filter(category=category)
     return render(request,
-                  'estoque/livro/list.html',
+                  'empresa/ecv/list.html',
                   {'category': category,
                    'categories': categories,
-                   'livros': livros})
+                   'ecvs': ecvs})
 
 
-def livro_detail(request, id, slug):
-    livro = get_object_or_404(Livro,
+def ecv_detail(request, id, slug):
+    ecv = get_object_or_404(Livro,
                                 id=id,
                                 slug=slug,
                                 available=True)
 
     return render(request,
-                  'estoque/livro/detail.html',
-                  {'livro': livro})
+                  'empresa/ecv/detail.html',
+                  {'ecv': ecv})
